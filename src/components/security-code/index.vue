@@ -56,7 +56,7 @@
         this.$refs.input.blur()
       },
       handleSubmit () {
-        this.$emit('input', this.value)
+        this.$emit('input', this.code)
       },
       handleInput (e) {
         if (e.target.value.length >= this.length) {
