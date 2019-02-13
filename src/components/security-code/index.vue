@@ -16,7 +16,6 @@
 <script>
   export default {
     name: 'SecurityCode',
-    // component properties
     props: {
       length: {
         type: Number,
@@ -44,9 +43,8 @@
     },
     methods: {
       hideKeyboard () {
-        // 输入完成隐藏键盘
-        document.activeElement.blur() // ios隐藏键盘
-        this.$refs.input.blur() // android隐藏键盘
+        document.activeElement.blur()
+        this.$refs.input.blur()
       },
       handleSubmit () {
         this.$emit('input', this.value)
