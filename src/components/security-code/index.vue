@@ -3,11 +3,11 @@
     <label :for="`code-${uuid}`">
       <ul :class="`${theme}-container security-code-container`">
         <li class="field-wrap" v-for="(item, index) in length" :key="index">
-          <i class="char-field">{{value[index] || placeholder}}</i>
+          <i class="char-field">{{code[index] || placeholder}}</i>
         </li>
       </ul>
     </label>
-    <input ref="input" class="input-code" @keyup="handleInput($event)" v-model="value"
+    <input ref="input" class="input-code" @keyup="handleInput($event)" v-model="code"
            :id="`code-${uuid}`" :name="`code-${uuid}`" type="tel" :maxlength="length"
            autocorrect="off" autocomplete="off" autocapitalize="off">
   </div>
@@ -25,6 +25,10 @@
         type: String,
         default: '-'
       },
+      value: {
+        type: String,
+        default: ''
+      },
       theme: {
         type: String,
         default: 'block'
@@ -33,13 +37,18 @@
     // variables
     data () {
       return {
-        value: ''
+        code: ''
       }
     },
     computed: {
       uuid () {
         return Math.random().toString(36).substring(3, 8)
       }
+    },
+    watch:{
+        value: function () {
+            this.code = this.value
+        }
     },
     methods: {
       hideKeyboard () {
